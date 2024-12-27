@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${title}">Clientes</title>
+</head>
+<body>
+<div class="container mt-4">
+<!-- templates/Clientes/clientes.html -->
+  <div th:fragment="content">
+    <h1>Clientes</h1>
+    <!-- Formulario de búsqueda -->
+    <form th:action="@{/clientes/buscar}" method="get" class="mb-3">
+      <div class="row g-2">
+        <div class="col-md-4">
+          <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre">
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="telefono" class="form-control" placeholder="Buscar por teléfono">
+        </div>
+        <div class="col-md-4">
+          <input type="text" name="dni" class="form-control" placeholder="Buscar por dni">
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-primary w-100">Buscar</button>
+        </div>
+      </div>
+    </form>
+
+
+    <!-- Mensajes de éxito o error -->
+    <div th:if="${success}" class="alert alert-success" role="alert">
+      <span th:text="${success}"></span>
+    </div>
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+      <span th:text="${error}"></span>
+    </div>
+
+    <!-- Tabla -->
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>DNI</th>
+        <th>Dirección</th>
+        <th>Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="cliente : ${clientes}">
+        <td th:text="${cliente.id}"></td>
+        <td th:text="${cliente.nombre}"></td>
+        <td th:text="${cliente.email}"></td>
+        <td th:text="${cliente.telefono}"></td>
+        <td th:text="${cliente.dni}"></td>
+        <td th:text="${cliente.direccion}"></td>
+        <td>
+          <a th:href="@{/clientes/editarCliente/{id}(id=${cliente.id})}" class="btn btn-warning btn-sm">Editar</a>
+          <a th:href="@{/clientes/eliminar/{id}(id=${cliente.id})}"
+             class="btn btn-danger btn-sm delete-btn">Eliminar</a>
+
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <!-- Botón para ir a la página anterior -->
+        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+          <a class="page-link" th:href="@{/clientes(size=${size}, page=${currentPage - 1})}">Anterior</a>
+        </li>
+
+        <!-- Botones para cada página -->
+        <li class="page-item" th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
+            th:classappend="${page == currentPage} ? 'active'">
+          <a class="page-link" th:href="@{/clientes(size=${size}, page=${page})}" th:text="${page + 1}"></a>
+        </li>
+
+        <!-- Botón para ir a la página siguiente -->
+        <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
+          <a class="page-link" th:href="@{/clientes(size=${size}, page=${currentPage + 1})}">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
+
+    <a th:href="@{/clientes/agregarCliente}" class="btn btn-primary">Añadir Cliente</a>
+
+  </div>
+</div>
+</body>
+</html>

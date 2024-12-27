@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Venta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <div th:fragment="content">
+    <h1>Agregar Venta</h1>
+
+    <!-- Mostrar error si existe -->
+    <div th:if="${error}" class="alert alert-danger" role="alert">
+        <span th:text="${error}"></span>
+    </div>
+
+    <!-- Formulario para agregar venta -->
+    <form action="/ventas/agregarVenta" method="post">
+        <!-- Cliente -->
+        <div class="mb-3">
+            <label for="cliente">Cliente:</label>
+            <select id="cliente" name="cliente.id" class="form-select" required>
+                <option value="">Seleccionar Cliente</option>
+                <option th:each="cliente : ${clientes}"
+                        th:value="${cliente.id}"
+                        th:text="${cliente.nombre} + ' (DNI: ' + ${cliente.dni} + ')'">
+                </option>
+            </select>
+        </div>
+
+        <!-- Detalles de la venta (productos) -->
+        <div class="mb-3" id="detalles">
+            <h3>Productos</h3>
+            <div th:each="producto, iterStat : ${productos}" class="row mb-2">
+                <div class="col-md-6">
+                    <label th:for="'producto' + ${producto.id}" th:text="${producto.nombre}"></label>
+                    <small class="text-muted">(Stock: <span th:text="${producto.stock}"></span>)</small> <!-- Mostrar stock -->
+                </div>
+                <div class="col-md-3">
+                    <input type="number" th:id="'producto' + ${producto.id}" th:name="'detalles[' + ${iterStat.index} + '].cantidad'" min="0" max="10000" placeholder="Cantidad" class="form-control" />
+                </div>
+                <input type="hidden" th:name="'detalles[' + ${iterStat.index} + '].producto.id'" th:value="${producto.id}" />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Agregar Venta</button>
+    </form>
+    <a href="/ventas" class="btn btn-secondary mt-3">Volver a la lista de ventas</a>
+    </div>
+</div>
+</body>
+</html>

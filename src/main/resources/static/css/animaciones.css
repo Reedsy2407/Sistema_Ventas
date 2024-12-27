@@ -1,0 +1,30 @@
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sidebar a {
+    position: relative;
+    overflow: hidden;
+}
+
+.sidebar a::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 193, 7, 0.2);
+    transition: left 0.4s;
+}
+
+.sidebar a:hover::before {
+    left: 0;
+}

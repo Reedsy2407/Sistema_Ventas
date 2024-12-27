@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Añadir Producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <!-- Fragmento de contenido -->
+    <div th:fragment="content">
+        <h1>Añadir Producto</h1>
+
+        <!-- Mensaje de error en rojo -->
+        <div th:if="${error}" class="alert alert-danger">
+            <span th:text="${error}"></span>
+        </div>
+
+        <!-- Formulario de añadir producto -->
+        <form th:action="@{/productos/agregarProducto}" th:object="${nuevoProducto}" method="post">
+            <div class="mb-3">
+                <label for="add_nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="add_nombre" th:field="*{nombre}" required>
+                <div th:if="${#fields.hasErrors('nombre')}" class="text-danger">
+                    <span th:errors="*{nombre}"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="add_descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="add_descripcion" th:field="*{descripcion}" required>
+                <div th:if="${#fields.hasErrors('descripcion')}" class="text-danger">
+                    <span th:errors="*{descripcion}"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="add_precio" class="form-label">Precio</label>
+                <input type="number" class="form-control" id="add_precio" th:field="*{precio}" step="0.01" min="1.00" required>
+                <div th:if="${#fields.hasErrors('precio')}" class="text-danger">
+                    <span th:errors="*{precio}"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="add_stock" class="form-label">Stock</label>
+                <input type="number" class="form-control" id="add_stock" th:field="*{stock}" required>
+                <div th:if="${#fields.hasErrors('stock')}" class="text-danger">
+                    <span th:errors="*{stock}"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="/productos" class="btn btn-light">Cancelar</a>
+        </form>
+    </div>
+</div>
+</body>
+</html>

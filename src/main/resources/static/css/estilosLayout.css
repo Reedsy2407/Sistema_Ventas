@@ -1,0 +1,90 @@
+/* Estilos generales del layout */
+body {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 270px;
+    background: #212529;
+    color: #fff;
+    flex-shrink: 0;
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fija el sidebar */
+    height: 100vh; /* Altura completa */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribuye el contenido hacia arriba y abajo */
+}
+
+.sidebar h4 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffc107;
+}
+
+.sidebar a {
+    color: #adb5bd;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    transition: all 0.3s;
+}
+
+.sidebar a:hover, .sidebar a.active {
+    background-color: #495057;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Estilo adicional para la estructura del dropdown */
+.sidebar .dropdown {
+    width: 100%; /* Asegura que el dropdown se ajuste al contenedor */
+    padding-bottom: 0; /* Quita el padding extra si es necesario */
+}
+
+
+/* Asegurar que el botón y el icono estén alineados correctamente */
+.sidebar .dropdown-toggle {
+    display: flex; /* Usamos flexbox para alinear los elementos */
+    justify-content: space-between; /* Espacio entre el texto y el ícono */
+    align-items: center; /* Alineamos verticalmente */
+    width: 100%;  /* El botón ocupa el 100% del ancho */
+    max-width: 100%;  /* Limita el ancho máximo al 100% del contenedor */
+    box-sizing: border-box; /* Asegura que padding y border no aumenten el tamaño total */
+}
+
+
+/* Estilo adicional para el texto del usuario */
+.sidebar .dropdown-toggle span {
+    font-size: 0.75rem;  /* Reducir el tamaño de la fuente */
+    white-space: nowrap;  /* Evita que el texto se divida en varias líneas */
+    overflow: hidden;  /* Oculta el contenido que se desborda */
+    text-overflow: ellipsis;  /* Agrega puntos suspensivos al final si el texto es muy largo */
+}
+
+/* Asegurar que el ícono del dropdown esté alineado a la derecha */
+.sidebar .dropdown-toggle .dropdown-toggle-split::after {
+    margin-left: 8px;  /* Ajusta el espacio entre el texto y el ícono */
+    font-size: 1rem;  /* Tamaño del ícono */
+}
+
+/* Asegúrate de que el botón se ajuste bien */
+.sidebar .dropdown-menu {
+    width: 100%; /* Hace que el menú se ajuste al tamaño del contenedor */
+    box-sizing: border-box; /* Asegura que los bordes y padding no sobresalgan */
+}
+
+.content {
+    flex-grow: 1;
+    padding: 30px;
+    animation: fadeIn 0.5s ease-in-out;
+    margin-left: 250px; /* Mantiene el contenido desplazado al lado derecho del sidebar */
+
+}

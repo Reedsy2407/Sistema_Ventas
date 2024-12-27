@@ -1,0 +1,22 @@
+/* Paleta de colores */
+:root {
+    --primary: #212529;
+    --secondary: #495057;
+    --accent: #ffc107;
+    --background: #f8f9fa;
+    --text: #343a40;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.sidebar {
+    background-color: var(--primary);
+}
+
+.sidebar a.active {
+    background-color: var(--accent);
+    color: var(--primary);
+}

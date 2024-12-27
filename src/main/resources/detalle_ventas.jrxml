@@ -1,0 +1,28 @@
+<jasperReport>
+    <parameter name="detalleVentasData" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <field name="producto.nombre" class="java.lang.String"/>
+    <field name="cantidad" class="java.lang.Integer"/>
+    <field name="precioUnitario" class="java.lang.Double"/>
+    <field name="subtotal" class="java.lang.Double"/>
+
+    <detail>
+        <band height="20">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{producto.nombre}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="0" width="50" height="20"/>
+                <textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="150" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{precioUnitario}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="250" y="0" width="100" height="20"/>
+                <textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

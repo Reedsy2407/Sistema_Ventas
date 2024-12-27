@@ -1,0 +1,66 @@
+<!-- editarCliente.html -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Cliente</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+  <div th:fragment="content">
+    <h1>Editar Cliente</h1>
+
+    <!-- Mensaje de error en rojo -->
+    <div th:if="${error}" class="alert alert-danger">
+      <span th:text="${error}"></span>
+    </div>
+
+    <form th:action="@{/clientes/editarCliente/{id}(id=${clienteEditar.id})}" th:object="${clienteEditar}" method="post">
+      <div class="mb-3">
+        <label for="edit_nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="edit_nombre" th:field="*{nombre}" required>
+        <div th:if="${#fields.hasErrors('nombre')}" class="text-danger">
+          <span th:errors="*{nombre}"></span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="edit_email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="edit_email" th:field="*{email}" required>
+        <div th:if="${#fields.hasErrors('email')}" class="text-danger">
+          <span th:errors="*{email}"></span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="edit_telefono" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" id="edit_telefono" th:field="*{telefono}" required>
+        <div th:if="${#fields.hasErrors('telefono')}" class="text-danger">
+          <span th:errors="*{telefono}"></span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="edit_dni" class="form-label">DNI</label>
+        <input type="text" class="form-control" id="edit_dni" th:field="*{dni}" required>
+        <div th:if="${#fields.hasErrors('dni')}" class="text-danger">
+          <span th:errors="*{dni}"></span>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="edit_direccion" class="form-label">Dirección</label>
+        <input type="text" class="form-control" id="edit_direccion" th:field="*{direccion}" required>
+        <div th:if="${#fields.hasErrors('direccion')}" class="text-danger">
+          <span th:errors="*{direccion}"></span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      <a href="/clientes" class="btn btn-light">Cancelar</a>
+    </form>
+  </div>
+</div>
+</body>
+</html>
