@@ -2,6 +2,7 @@ package com.angel.springboot.app.springboot_intellij.controladores;
 
 
 import com.angel.springboot.app.springboot_intellij.entidades.Producto;
+import com.angel.springboot.app.springboot_intellij.repositorios.CategoriaRepository;
 import com.angel.springboot.app.springboot_intellij.repositorios.DetalleVentaRepository;
 import com.angel.springboot.app.springboot_intellij.repositorios.ProductoRepository;
 import com.angel.springboot.app.springboot_intellij.servicios.VentaService;
@@ -24,6 +25,9 @@ public class ProductoController {
 
     @Autowired
     private ProductoRepository productoRepository;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
 
     @Autowired
     private DetalleVentaRepository detalleVentaRepository;
@@ -82,16 +86,19 @@ public class ProductoController {
     @GetMapping("/agregarProducto")
     public String mostrarProductoAgregar(Model model) {
         model.addAttribute("nuevoProducto", new Producto());
+        model.addAttribute("categorias", categoriaRepository.findAll()); // Cargar categorías disponibles
         model.addAttribute("title", "Añadir Producto - Sistema de Ventas");
         model.addAttribute("currentPage", "productos");
         model.addAttribute("contentTemplate", "Productos/agregarProducto");
         return "layout";
     }
 
+
     @PostMapping("/agregarProducto")
     public String crearProducto(@Validated @ModelAttribute("nuevoProducto") Producto producto,
                                 BindingResult bindingResult, RedirectAttributes redirectAttrs, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categorias", categoriaRepository.findAll()); // Volver a cargar categorías en caso de error
             model.addAttribute("title", "Añadir Producto - Sistema de Ventas");
             model.addAttribute("currentPage", "productos");
             model.addAttribute("contentTemplate", "Productos/agregarProducto");
@@ -99,6 +106,7 @@ public class ProductoController {
         }
 
         if (productoRepository.findByNombre(producto.getNombre()).isPresent()) {
+            model.addAttribute("categorias", categoriaRepository.findAll());
             model.addAttribute("error", "El nombre ya está registrado.");
             model.addAttribute("title", "Añadir Producto - Sistema de Ventas");
             model.addAttribute("currentPage", "productos");
@@ -116,6 +124,7 @@ public class ProductoController {
         Optional<Producto> producto = productoRepository.findById(id);
         if (producto.isPresent()) {
             model.addAttribute("productoEditar", producto.get());
+            model.addAttribute("categorias", categoriaRepository.findAll()); // Cargar categorías disponibles
             model.addAttribute("title", "Editar Producto - Sistema de Ventas");
             model.addAttribute("currentPage", "productos");
             model.addAttribute("contentTemplate", "Productos/editarProducto");
@@ -130,6 +139,7 @@ public class ProductoController {
     public String actualizarProducto(@PathVariable Integer id, @Validated @ModelAttribute("productoEditar") Producto producto,
                                      BindingResult bindingResult, RedirectAttributes redirectAttrs, Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("categorias", categoriaRepository.findAll()); // Volver a cargar categorías en caso de error
             model.addAttribute("title", "Editar Producto - Sistema de Ventas");
             model.addAttribute("currentPage", "productos");
             model.addAttribute("contentTemplate", "Productos/editarProducto");
@@ -140,6 +150,7 @@ public class ProductoController {
         if (productoExistente.isPresent()) {
             Optional<Producto> productoNombre = productoRepository.findByNombre(producto.getNombre());
             if (productoNombre.isPresent() && !productoNombre.get().getId().equals(id)) {
+                model.addAttribute("categorias", categoriaRepository.findAll()); // Volver a cargar categorías en caso de error
                 model.addAttribute("error", "El nombre ya está registrado en otro producto.");
                 model.addAttribute("title", "Editar Producto - Sistema de Ventas");
                 model.addAttribute("currentPage", "productos");

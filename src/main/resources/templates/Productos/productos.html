@@ -46,6 +46,7 @@
         <th>Descripción</th>
         <th>Precio</th>
         <th>Stock</th>
+        <th>Categoría</th>
         <th>Acciones</th>
       </tr>
       </thead>
@@ -56,6 +57,7 @@
         <td th:text="${producto.descripcion}"></td>
         <td th:text="${#numbers.formatDecimal(producto.precio, 1, 2)}"></td>
         <td th:text="${producto.stock}"></td>
+        <td th:text="${producto.categoria.nombre}"></td>
         <td>
           <a th:href="@{/productos/editarProducto/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">Editar</a>
           <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}"

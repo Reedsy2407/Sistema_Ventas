@@ -31,4 +31,8 @@ public class Producto {
     @Min(value = 0, message = "El stock debe ser al menos 1.")
     @Max(value = 500, message = "El stock no puede exceder los 500.")
     private Integer stock;
+
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "categoria_id", nullable = false)
+    private Categoria categoria;
 }

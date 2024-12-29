@@ -1,7 +1,6 @@
 package com.angel.springboot.app.springboot_intellij.entidades;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

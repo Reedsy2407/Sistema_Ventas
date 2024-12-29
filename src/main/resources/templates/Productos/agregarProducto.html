@@ -26,6 +26,19 @@
                 </div>
             </div>
             <div class="mb-3">
+                <label for="add_categoria" class="form-label">Categoría</label>
+                <select id="add_categoria" name="categoria.id" th:field="*{categoria.id}" class="form-select" required>
+                    <option value="">Seleccionar Categoría</option>
+                    <option th:each="categoria : ${categorias}"
+                            th:value="${categoria.id}"
+                            th:text="${categoria.nombre}">
+                    </option>
+                </select>
+                <div th:if="${#fields.hasErrors('categoria')}" class="text-danger">
+                    <span th:errors="*{categoria}"></span>
+                </div>
+            </div>
+            <div class="mb-3">
                 <label for="add_descripcion" class="form-label">Descripción</label>
                 <input type="text" class="form-control" id="add_descripcion" th:field="*{descripcion}" required>
                 <div th:if="${#fields.hasErrors('descripcion')}" class="text-danger">

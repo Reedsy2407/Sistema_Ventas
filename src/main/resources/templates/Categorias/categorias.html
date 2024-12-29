@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${title}">Categorías - Sistema de Ventas</title>
+</head>
+<body>
+<div class="container mt-4">
+  <div th:fragment="content">
+
+  <h1>Categorías</h1>
+
+  <!-- Mensajes de éxito o error -->
+  <div th:if="${success}" class="alert alert-success" role="alert">
+    <span th:text="${success}"></span>
+  </div>
+  <div th:if="${error}" class="alert alert-danger" role="alert">
+    <span th:text="${error}"></span>
+  </div>
+
+  <!-- Tabla de categorías -->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="categoria : ${categorias}">
+      <td th:text="${categoria.id}"></td>
+      <td th:text="${categoria.nombre}"></td>
+      <td>
+        <a th:href="@{/categorias/editarCategoria/{id}(id=${categoria.id})}" class="btn btn-warning btn-sm">Editar</a>
+        <a th:href="@{/categorias/eliminar/{id}(id=${categoria.id})}" class="btn btn-danger btn-sm delete-btn">Eliminar</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <!-- Botón para ir a la página anterior -->
+        <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+          <a class="page-link" th:href="@{/categorias(size=${size}, page=${currentPage - 1})}">Anterior</a>
+        </li>
+
+        <!-- Botones para cada página -->
+        <li class="page-item" th:each="page : ${#numbers.sequence(0, totalPages - 1)}"
+            th:classappend="${page == currentPage} ? 'active'">
+          <a class="page-link" th:href="@{/categorias(size=${size}, page=${page})}" th:text="${page + 1}"></a>
+        </li>
+
+        <!-- Botón para ir a la página siguiente -->
+        <li class="page-item" th:classappend="${currentPage + 1 >= totalPages} ? 'disabled'">
+          <a class="page-link" th:href="@{/categorias(size=${size}, page=${currentPage + 1})}">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
+
+
+    <!-- Botón para agregar nueva categoría -->
+  <a href="/categorias/agregarCategoria" class="btn btn-primary">Añadir Categoría</a>
+</div>
+
+</div>
+</body>
+</html>

@@ -32,24 +32,42 @@
         <!-- Detalles de la venta (productos) -->
         <div class="mb-3" id="detalles">
             <h3>Productos</h3>
-            <div th:each="detalle, iterStat : ${venta.detalles}" class="row mb-2">
-                <div class="col-md-6">
+            <div th:each="detalle, iterStat : ${venta.detalles}" class="row mb-2 align-items-center">
+                <div class="col-md-4">
                     <label th:for="'producto' + ${detalle.producto.id}" th:text="${detalle.producto.nombre}"></label>
-                    <small class="text-muted">(Stock: <span th:text="${detalle.producto.stock}"></span>)</small> <!-- Mostrar stock -->
+                    <small class="text-muted">(Stock: <span th:text="${detalle.producto.stock}"></span>)</small>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <input type="number"
-                           th:id="'producto' + ${detalle.producto.id}"
+                           th:id="'cantidad' + ${detalle.producto.id}"
                            th:name="'detalles[' + ${iterStat.index} + '].cantidad'"
                            th:value="${detalle.cantidad}"
-                           min="0" max="10000"
-                           class="form-control" />
+                           min="0"
+                           placeholder="Cantidad"
+                           class="form-control cantidad"
+                           data-producto-id="${detalle.producto.id}" />
                 </div>
-                <input type="hidden"
-                       th:name="'detalles[' + ${iterStat.index} + '].producto.id'"
-                       th:value="${detalle.producto.id}" />
+                <div class="col-md-2">
+                    <input type="text"
+                           class="form-control precio"
+                           th:value="${detalle.precioUnitario}"
+                           readonly />
+                </div>
+                <div class="col-md-2">
+                    <input type="text"
+                           th:id="'subtotal' + ${detalle.producto.id}"
+                           class="form-control subtotal"
+                           th:value="${detalle.subtotal}"
+                           readonly />
+                </div>
+                <input type="hidden" th:name="'detalles[' + ${iterStat.index} + '].producto.id'" th:value="${detalle.producto.id}" />
             </div>
         </div>
+        <div class="mt-4">
+            <label>Total:</label>
+            <input type="text" id="total" class="form-control" th:value="${venta.total}" readonly />
+        </div>
+
 
         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
     </form>

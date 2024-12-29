@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Editar Categoría</title>
+</head>
+<body>
+<div class="container mt-4">
+    <div th:fragment="content">
+    <h1>Editar Categoría</h1>
+
+    <!-- Mensajes de error -->
+    <div th:if="${error}" class="alert alert-danger">
+        <span th:text="${error}"></span>
+    </div>
+
+    <!-- Formulario -->
+    <form th:action="@{/categorias/editar/{id}(id=${categoriaEditar.id})}" th:object="${categoriaEditar}" method="post">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+            <div th:if="${#fields.hasErrors('nombre')}" class="text-danger">
+                <span th:errors="*{nombre}"></span>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <a href="/categorias" class="btn btn-light">Cancelar</a>
+    </form>
+</div>
+</div>
+</body>
+</html>

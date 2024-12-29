@@ -11,7 +11,7 @@
   <link th:href="@{/css/fuentes.css}" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
+<body data-usuario-id="${usuario.id}">
 <!-- Sidebar -->
 <div class="sidebar d-flex flex-column justify-content-between" style="height: 100vh; position: fixed;">
   <!-- Enlace principales -->
@@ -19,8 +19,13 @@
     <h4 class="text-center py-3">Sistema de Ventas</h4>
     <a th:href="@{/}" th:classappend="${currentPage == 'index' ? 'active' : ''}">Inicio</a>
     <a th:href="@{/clientes}" th:classappend="${currentPage == 'clientes' ? 'active' : ''}">Clientes</a>
+    <a th:href="@{/categorias}" th:classappend="${currentPage == 'categorias' ? 'active' : ''}">Categorias</a>
     <a th:href="@{/productos}" th:classappend="${currentPage == 'productos' ? 'active' : ''}">Productos</a>
     <a th:href="@{/ventas}" th:classappend="${currentPage == 'ventas' ? 'active' : ''}">Ventas</a>
+    <a th:if="${usuario.rol.nombre == 'ADMIN'}"
+       th:href="@{/usuarios}"
+       th:classappend="${currentPage == 'usuarios' ? 'active' : ''}">Usuarios</a>
+
   </div>
 
   <!-- Información del usuario -->
@@ -32,7 +37,7 @@
               id="userDropdown"
               data-bs-toggle="dropdown"
               aria-expanded="false">
-        <span th:text="'Usuario: ' + ${usuario.username} + ' (' + ${usuario.rol.nombre} + ')'"></span>
+        <span th:text="${usuario.username} + ' (' + ${usuario.rol.nombre} + ')'"></span>
       </button>
 
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
@@ -57,5 +62,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script th:src="@{/js/confirmaciones.js}"></script>
+<script th:src="@{/js/ventas.js}"></script>
+<script th:src="@{/js/cache.js}"></script>
 </body>
 </html>
