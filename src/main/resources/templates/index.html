@@ -2,36 +2,42 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title th:text="${title}">Sistema de Ventas</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sistema de Ventas para gestionar clientes, productos, categorías, ventas y usuarios de forma eficiente.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
 <div th:fragment="content">
     <h1 class="text-center">Bienvenido al Sistema de Ventas</h1>
-    <p class="text-center">Seleccione una opción del menú lateral para comenzar.</p>
-
+    <h2 class="text-center mt-4">Opciones Principales</h2>
     <div class="d-flex justify-content-center flex-wrap mt-4">
+        <div class="option-card bg-info text-white">
+            <i class="fas fa-users fa-3x"></i>
+            <h3>Clientes</h3>
+            <a th:href="@{/clientes}" class="btn btn-light mt-2">Ver más</a>
+        </div>
         <div class="option-card bg-primary text-white">
             <i class="fas fa-box fa-3x"></i>
             <h3>Productos</h3>
-            <a th:href="@{/productos}" class="btn btn-light mt-2">Ver Más</a>
+            <a th:href="@{/productos}" class="btn btn-light mt-2">Ver más</a>
         </div>
         <div class="option-card bg-success text-white">
             <i class="fas fa-tags fa-3x"></i>
             <h3>Categorías</h3>
-            <a th:href="@{/categorias}" class="btn btn-light mt-2">Ver Más</a>
+            <a th:href="@{/categorias}" class="btn btn-light mt-2">Ver más</a>
         </div>
         <div class="option-card bg-warning text-dark">
             <i class="fas fa-shopping-cart fa-3x"></i>
             <h3>Ventas</h3>
-            <a th:href="@{/ventas}" class="btn btn-dark mt-2">Ver Más</a>
+            <a th:href="@{/ventas}" class="btn btn-dark mt-2">Ver más</a>
         </div>
         <div class="option-card bg-danger text-white" th:if="${usuario.rol.nombre == 'ADMIN'}">
             <i class="fas fa-user-cog fa-3x"></i>
             <h3>Usuarios</h3>
-            <a th:href="@{/usuarios}" class="btn btn-light mt-2">Ver Más</a>
+            <a th:if="${usuario.rol.nombre == 'ADMIN'}"
+               th:href="@{/usuarios}" class="btn btn-light mt-2">Ver más</a>
         </div>
     </div>
 </div>
-
 </body>
 </html>

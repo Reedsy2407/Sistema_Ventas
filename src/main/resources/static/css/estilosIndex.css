@@ -1,23 +1,49 @@
+div.option-card.bg-info {
+    background-color: #0275d8 !important;
+    color: #ffffff !important;
+}
+
+div.option-card.bg-primary {
+    background-color: #0056b3 !important;
+    color: #ffffff !important;
+}
+
+div.option-card.bg-success {
+    background-color: #2d6a4f !important;
+    color: #ffffff !important;
+}
+
+div.option-card.bg-warning {
+    background-color: #ffc107 !important;
+    color: #000000 !important;
+}
+
+div.option-card.bg-danger {
+    background-color: #c82333 !important;
+    color: #ffffff !important;
+}
+
+/* Estilos generales */
 .option-card {
-  width: 200px;
-  height: 250px;
-  margin: 15px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
+    width: 200px;
+    height: 250px;
+    margin: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .option-card h3 {
-  margin-top: 15px;
-  font-size: 1.5rem;
+    margin-top: 15px;
+    font-size: 1.5rem;
 }
 
 .option-card a {
-  margin-top: 10px;
-  font-size: 1rem;
-  text-decoration: none;
+    margin-top: 10px;
+    font-size: 1rem;
+    text-decoration: none;
 }

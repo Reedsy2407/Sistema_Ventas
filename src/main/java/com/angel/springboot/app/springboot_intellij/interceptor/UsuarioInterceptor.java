@@ -17,8 +17,9 @@ public class UsuarioInterceptor implements HandlerInterceptor {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
         String uri = request.getRequestURI();
 
-        // Permitir acceso sin sesión solo a rutas públicas
-        if (usuario == null && !uri.startsWith("/login") && !uri.startsWith("/css") && !uri.startsWith("/js") && !uri.startsWith("/images")) {
+        // Permitir acceso sin sesión a rutas públicas y específicas como robots.txt
+        if (usuario == null && !uri.startsWith("/login") && !uri.startsWith("/css")
+                && !uri.startsWith("/js") && !uri.startsWith("/images") && !uri.equals("/robots.txt")) {
             response.sendRedirect("/login");
             return false;
         }
@@ -31,6 +32,7 @@ public class UsuarioInterceptor implements HandlerInterceptor {
 
         return true;
     }
+
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
