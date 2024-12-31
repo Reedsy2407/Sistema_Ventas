@@ -102,11 +102,13 @@
                     </div>
                 </div>
             </td>
-            <td>
-                <a th:href="@{/ventas/editarVenta/{id}(id=${venta.id})}" class="btn btn-warning btn-sm">Editar</a>
-                <a th:href="@{/ventas/eliminar/{id}(id=${venta.id})}"
-                   class="btn btn-danger btn-sm delete-btn">Eliminar</a>
-            </td>
+                <td>
+                    <a th:href="@{/ventas/editarVenta/{id}(id=${venta.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:if="${usuario.rol.nombre == 'ADMIN'}"
+                       th:href="@{/ventas/eliminar/{id}(id=${venta.id})}"
+                       class="btn btn-danger btn-sm delete-btn">Eliminar</a>
+                </td>
+
         </tr>
         </tbody>
     </table>
@@ -134,7 +136,7 @@
 
 
         <!-- Botón para generar reporte PDF -->
-    <a href="/ventas/reporte/pdf" class="btn btn-info mb-2">Generar Reporte PDF</a>
+    <a href="/ventas/reporte/pdf" class="btn btn-info">Generar Reporte PDF</a>
     <a th:href="@{/ventas/agregarVenta}" class="btn btn-primary">Añadir Venta</a>
     </div>
 </div>

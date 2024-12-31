@@ -60,10 +60,11 @@
         <td th:text="${producto.categoria.nombre}"></td>
         <td>
           <a th:href="@{/productos/editarProducto/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">Editar</a>
-          <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}"
+          <a th:if="${usuario.rol.nombre == 'ADMIN'}"
+             th:href="@{/productos/eliminar/{id}(id=${producto.id})}"
              class="btn btn-danger btn-sm delete-btn">Eliminar</a>
-
         </td>
+
       </tr>
       </tbody>
     </table>

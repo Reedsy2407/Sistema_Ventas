@@ -1,0 +1,23 @@
+.option-card {
+  width: 200px;
+  height: 250px;
+  margin: 15px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.option-card h3 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+}
+
+.option-card a {
+  margin-top: 10px;
+  font-size: 1rem;
+  text-decoration: none;
+}

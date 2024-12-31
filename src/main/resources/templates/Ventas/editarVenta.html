@@ -45,15 +45,18 @@
                            min="0"
                            placeholder="Cantidad"
                            class="form-control cantidad"
-                           data-producto-id="${detalle.producto.id}" />
+                           th:attr="data-producto-id=${detalle.producto.id}" />
+
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 d-flex align-items-center">
+                    <label class="me-2">Precio:</label>
                     <input type="text"
                            class="form-control precio"
                            th:value="${detalle.precioUnitario}"
                            readonly />
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 d-flex align-items-center">
+                    <label class="me-2">Subtotal:</label>
                     <input type="text"
                            th:id="'subtotal' + ${detalle.producto.id}"
                            class="form-control subtotal"
@@ -69,10 +72,12 @@
         </div>
 
 
-        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">Agregar Venta</button>
+            <a href="/ventas" class="btn btn-secondary">Volver a la lista de ventas</a>
+        </div>
     </form>
 
-    <a href="/ventas" class="btn btn-secondary mt-3">Volver a la lista de ventas</a>
     </div>
 </div>
 </body>

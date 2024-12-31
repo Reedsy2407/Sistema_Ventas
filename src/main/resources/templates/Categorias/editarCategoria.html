@@ -15,7 +15,7 @@
     </div>
 
     <!-- Formulario -->
-    <form th:action="@{/categorias/editar/{id}(id=${categoriaEditar.id})}" th:object="${categoriaEditar}" method="post">
+    <form th:action="@{/categorias/editarCategoria/{id}(id=${categoriaEditar.id})}" th:object="${categoriaEditar}" method="post">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>

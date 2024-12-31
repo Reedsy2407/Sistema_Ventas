@@ -1,6 +1,8 @@
 package com.angel.springboot.app.springboot_intellij.controladores;
 
 
+
+import com.angel.springboot.app.springboot_intellij.entidades.Rol;
 import com.angel.springboot.app.springboot_intellij.entidades.Usuario;
 import com.angel.springboot.app.springboot_intellij.repositorios.RolRepository;
 import com.angel.springboot.app.springboot_intellij.repositorios.UsuarioRepository;
@@ -103,8 +105,12 @@ public class UsuarioController {
     }
 
     @PostMapping("/editarUsuario/{id}")
-    public String actualizarUsuario(@PathVariable Integer id, @Validated @ModelAttribute("usuarioEditar") Usuario usuario,
-                                    BindingResult bindingResult, RedirectAttributes redirectAttrs, Model model) {
+    public String actualizarUsuario(@PathVariable Integer id,
+                                    @Validated @ModelAttribute("usuarioEditar") Usuario usuario,
+                                    BindingResult bindingResult,
+                                    HttpSession session,
+                                    RedirectAttributes redirectAttrs,
+                                    Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("roles", rolRepository.findAll());
             model.addAttribute("title", "Editar Usuario - Sistema de Ventas");
@@ -113,11 +119,23 @@ public class UsuarioController {
             return "layout";
         }
 
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+
+        // Verificar si el usuario logueado intenta cambiar su propio rol
+        if (usuarioLogueado != null && usuarioLogueado.getId().equals(id)) {
+            Optional<Rol> rolAdmin = rolRepository.findByNombre("ADMIN");
+            if (rolAdmin.isPresent() && !usuario.getRol().getId().equals(rolAdmin.get().getId())) {
+                redirectAttrs.addFlashAttribute("error", "No puedes cambiar tu propio rol de ADMIN a otro rol.");
+                return "redirect:/usuarios";
+            }
+        }
+
         usuario.setId(id);
         usuarioRepository.save(usuario);
         redirectAttrs.addFlashAttribute("success", "Usuario actualizado con éxito.");
         return "redirect:/usuarios";
     }
+
 
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable Integer id, HttpSession session, RedirectAttributes redirectAttrs) {

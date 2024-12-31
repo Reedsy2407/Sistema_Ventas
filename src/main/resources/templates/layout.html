@@ -6,9 +6,11 @@
   <title th:text="${title}">Sistema de Ventas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link th:href="@{/css/estilosLayout.css}" rel="stylesheet">
+  <link th:href="@{/css/estilosIndex.css}" rel="stylesheet">
   <link th:href="@{/css/animaciones.css}" rel="stylesheet">
   <link th:href="@{/css/colores.css}" rel="stylesheet">
   <link th:href="@{/css/fuentes.css}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body data-usuario-id="${usuario.id}">
@@ -17,15 +19,26 @@
   <!-- Enlace principales -->
   <div>
     <h4 class="text-center py-3">Sistema de Ventas</h4>
-    <a th:href="@{/}" th:classappend="${currentPage == 'index' ? 'active' : ''}">Inicio</a>
-    <a th:href="@{/clientes}" th:classappend="${currentPage == 'clientes' ? 'active' : ''}">Clientes</a>
-    <a th:href="@{/categorias}" th:classappend="${currentPage == 'categorias' ? 'active' : ''}">Categorias</a>
-    <a th:href="@{/productos}" th:classappend="${currentPage == 'productos' ? 'active' : ''}">Productos</a>
-    <a th:href="@{/ventas}" th:classappend="${currentPage == 'ventas' ? 'active' : ''}">Ventas</a>
+    <a th:href="@{/}" th:classappend="${currentPage == 'index' ? 'active' : ''}">
+      <i class="fas fa-home me-2"></i> Inicio
+    </a>
+    <a th:href="@{/clientes}" th:classappend="${currentPage == 'clientes' ? 'active' : ''}">
+      <i class="fas fa-users me-2"></i> Clientes
+    </a>
+    <a th:href="@{/categorias}" th:classappend="${currentPage == 'categorias' ? 'active' : ''}">
+      <i class="fas fa-tags me-2"></i> Categorías
+    </a>
+    <a th:href="@{/productos}" th:classappend="${currentPage == 'productos' ? 'active' : ''}">
+      <i class="fas fa-box me-2"></i> Productos
+    </a>
+    <a th:href="@{/ventas}" th:classappend="${currentPage == 'ventas' ? 'active' : ''}">
+      <i class="fas fa-shopping-cart me-2"></i> Ventas
+    </a>
     <a th:if="${usuario.rol.nombre == 'ADMIN'}"
        th:href="@{/usuarios}"
-       th:classappend="${currentPage == 'usuarios' ? 'active' : ''}">Usuarios</a>
-
+       th:classappend="${currentPage == 'usuarios' ? 'active' : ''}">
+      <i class="fas fa-user-cog me-2"></i> Usuarios
+    </a>
   </div>
 
   <!-- Información del usuario -->

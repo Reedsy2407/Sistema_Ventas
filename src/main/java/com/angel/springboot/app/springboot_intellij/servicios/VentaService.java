@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 @Service
 public class VentaService {
 
+
     @Autowired
     private VentaRepository ventaRepository;
 
