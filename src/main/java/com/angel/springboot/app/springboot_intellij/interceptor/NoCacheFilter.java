@@ -9,11 +9,12 @@ import java.io.IOException;
 public class NoCacheFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-        // Deshabilitar caché
-        httpResponse.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        // Configuración de caché
+        httpResponse.setHeader("Cache-Control", "private, max-age=0, must-revalidate");
         httpResponse.setHeader("Pragma", "no-cache");
         httpResponse.setHeader("Expires", "0");
 

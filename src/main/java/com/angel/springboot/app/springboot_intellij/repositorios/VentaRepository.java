@@ -27,3 +27,4 @@ public interface VentaRepository extends JpaRepository<Venta, Integer> {
     long countByClienteId(Integer clienteId);
 
 }
+    

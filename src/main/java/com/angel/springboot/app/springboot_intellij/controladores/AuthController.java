@@ -24,6 +24,10 @@ public class AuthController {
 
     @PostMapping("/login")
     public String autenticar(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
+        if (session.getAttribute("usuario") != null) {
+            return "redirect:/"; // Ya autenticado
+        }
+
         Usuario usuario = authService.autenticar(username, password);
         if (usuario != null) {
             session.setAttribute("usuario", usuario);
@@ -32,6 +36,7 @@ public class AuthController {
         model.addAttribute("error", "Credenciales inválidas");
         return "login";
     }
+
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {

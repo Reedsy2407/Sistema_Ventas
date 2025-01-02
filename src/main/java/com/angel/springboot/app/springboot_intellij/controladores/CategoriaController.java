@@ -120,7 +120,7 @@ public class CategoriaController {
     @GetMapping("/eliminar/{id}")
     public String eliminarCategoria(@PathVariable Integer id, RedirectAttributes redirectAttrs) {
         if (productoRepository.countByCategoriaId(id) > 0) {
-            redirectAttrs.addFlashAttribute("error", "No se puede eliminar porque está asociada a productos.");
+            redirectAttrs.addFlashAttribute("error", "No se puede eliminar porque está asociada a algun producto.");
         } else {
             categoriaRepository.deleteById(id);
             redirectAttrs.addFlashAttribute("success", "Categoría eliminada con éxito.");

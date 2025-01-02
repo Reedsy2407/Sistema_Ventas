@@ -26,10 +26,10 @@
             <h3>Categorías</h3>
             <a th:href="@{/categorias}" class="btn btn-light mt-2">Ver más</a>
         </div>
-        <div class="option-card bg-warning text-dark">
+        <div class="option-card bg-warning text-white">
             <i class="fas fa-shopping-cart fa-3x"></i>
             <h3>Ventas</h3>
-            <a th:href="@{/ventas}" class="btn btn-dark mt-2">Ver más</a>
+            <a th:href="@{/ventas}" class="btn btn-light mt-2">Ver más</a>
         </div>
         <div class="option-card bg-danger text-white" th:if="${usuario.rol.nombre == 'ADMIN'}">
             <i class="fas fa-user-cog fa-3x"></i>

@@ -192,4 +192,29 @@ public class ProductoController {
         }
         return "redirect:/productos";
     }
+
+    @GetMapping("/buscar")
+    public String buscarProductos(
+            @RequestParam(value = "nombre", required = false) String nombre,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            Model model) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Producto> productosPage;
+        if (nombre != null && !nombre.isEmpty()) {
+            productosPage = productoRepository.findByNombreContainingIgnoreCase(nombre, pageable);
+        } else {
+            productosPage = productoRepository.findAll(pageable);
+        }
+        model.addAttribute("productos", productosPage.getContent());
+        model.addAttribute("currentPage", productosPage.getNumber());
+        model.addAttribute("totalPages", productosPage.getTotalPages());
+        model.addAttribute("totalItems", productosPage.getTotalElements());
+        model.addAttribute("size", size);
+        model.addAttribute("title", "Buscar Productos - Sistema de Ventas");
+        model.addAttribute("currentPageName", "productos");
+        model.addAttribute("contentTemplate", "Productos/productos");
+        return "layout";
+    }
+
 }

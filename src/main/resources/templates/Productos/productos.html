@@ -21,23 +21,23 @@
       <span th:text="${error}"></span>
     </div>
 
-    <!-- Formulario de búsqueda -->
-    <form method="get" action="/productos" class="mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <!-- Botón de Productos con Bajo Stock -->
+      <a href="/productos/bajoStock?stockMinimo=10" class="btn btn-warning">Productos con bajo stock</a>
+    </div>
+
+    <!-- Formulario de Búsqueda -->
+    <form th:action="@{/productos/buscar}" method="get" class="mb-3">
       <div class="row g-2">
-        <div class="col-md-4">
-          <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre" th:value="${param.nombre}">
+        <div class="col-md-6">
+          <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre de producto">
         </div>
         <div class="col-md-2">
-          <button type="submit" class="btn btn-primary">Buscar</button>
-        </div>
-        <div class="col-md-2">
-          <a href="/productos" class="btn btn-secondary">Limpiar filtros</a>
-        </div>
-        <div class="col-md-4 text-end">
-          <a href="/productos/bajoStock?stockMinimo=10" class="btn btn-warning">Productos con bajo stock</a>
+          <button type="submit" class="btn btn-primary w-100">Buscar</button>
         </div>
       </div>
     </form>
+
 
     <!-- Tabla de productos -->
     <table class="table table-striped">

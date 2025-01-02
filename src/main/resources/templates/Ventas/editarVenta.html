@@ -21,14 +21,16 @@
         <form th:action="@{/ventas/editarVenta/{id}(id=${venta.id})}" method="post">
             <!-- Cliente -->
             <div class="mb-3">
-                <label for="cliente">Cliente:</label>
-                <select id="cliente" name="cliente.id" class="form-select" required>
+                <label for="edit_cliente">Cliente:</label>
+                <select id="edit_cliente" name="cliente.id" class="form-select" required>
                     <option value="">Seleccionar Cliente</option>
                     <option th:each="cliente : ${clientes}"
                             th:value="${cliente.id}"
-                            th:text="${cliente.nombre} + ' (DNI: ' + ${cliente.dni} + ')'">
+                            th:text="${cliente.nombre + ' (DNI: ' + cliente.dni + ')'}"
+                            th:selected="${venta.cliente.id == cliente.id}">
                     </option>
                 </select>
+
             </div>
 
             <!-- Detalles de la venta (productos) -->
