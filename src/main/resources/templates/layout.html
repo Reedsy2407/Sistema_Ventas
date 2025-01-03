@@ -6,6 +6,7 @@
   <title th:text="${title}">Sistema de Ventas</title>
   <meta name="description" content="Sistema de Ventas para gestionar clientes, productos, ventas y usuarios.">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link th:href="@{/css/nightMode.css}" rel="stylesheet">
   <link th:href="@{/css/estilosIndex.css}" rel="stylesheet">
   <link th:href="@{/css/estilosLayout.css}" rel="stylesheet">
   <link th:href="@{/css/animaciones.css}" rel="stylesheet">
@@ -62,6 +63,11 @@
   </div>
 </div>
 
+<!-- Botón Modo Noche -->
+<div id="toggle-night-mode" class="night-mode-btn" style="position: fixed; top: 10px; right: 10px; z-index: 9999;">
+  <img src="/images/moon-icon.png" alt="Modo Noche" style="cursor: pointer; width: 42px; height: 42px;">
+</div>
+
 <!-- Contenido principal -->
 <div class="content" style="margin-left: 250px;">
 
@@ -72,6 +78,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script th:src="@{/js/confirmaciones.js}"></script>
+<script th:src="@{/js/nightMode.js}"></script>
 <script th:src="@{/js/ventas.js}"></script>
 <script th:src="@{/js/cache.js}"></script>
 </body>

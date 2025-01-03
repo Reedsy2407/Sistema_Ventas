@@ -1,0 +1,69 @@
+/* nightMode.css */
+body.night-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.sidebar.night-mode {
+    background-color: #1e1e1e;
+}
+
+.content.night-mode {
+    background-color: #1e1e1e;
+}
+
+.night-mode-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.night-mode-btn img {
+    width: 50px;
+    height: 50px;
+}
+
+.night-mode-btn img {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.night-mode-btn img.icon-transition {
+    transform: rotate(360deg);
+    opacity: 0.8;
+}
+
+/* nightMode.css */
+body.night-mode input.form-control {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+body.night-mode input.form-control::placeholder {
+    color: #aaaaaa;
+}
+
+body.night-mode table.table {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+body.night-mode table.table th,
+body.night-mode table.table td {
+    border-color: #444444;
+}
+
+body.night-mode table.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #2a2a2a;
+}
+
+body.night-mode table.table-striped tbody tr:nth-of-type(even) {
+    background-color: #1e1e1e;
+}
