@@ -169,19 +169,19 @@ public class VentaController {
     @GetMapping("/reporte/pdf")
     public ResponseEntity<byte[]> generarReportePDF() {
         try {
-            JasperPrint jasperPrint = ventaService.generarReporteVenta();
-            byte[] pdf = JasperExportManager.exportReportToPdf(jasperPrint);
+            byte[] pdf = ventaService.generarReporteVentaPDF();
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
-            // Forzar la descarga del archivo PDF
             headers.setContentDispositionFormData("attachment", "reporte_ventas.pdf");
 
             return new ResponseEntity<>(pdf, headers, HttpStatus.OK);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(("Error al generar el reporte: " + e.getMessage()).getBytes());
         }
     }
+
 
     @GetMapping("/limpiarFiltros")
     public String limpiarFiltros() {

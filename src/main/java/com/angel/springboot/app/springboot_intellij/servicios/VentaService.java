@@ -8,7 +8,6 @@ import com.angel.springboot.app.springboot_intellij.repositorios.ProductoReposit
 import com.angel.springboot.app.springboot_intellij.repositorios.VentaRepository;
 import com.angel.springboot.app.springboot_intellij.repositorios.DetalleVentaRepository;
 import jakarta.transaction.Transactional;
-import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -225,7 +224,7 @@ public class VentaService {
         return ventaRepository.findByFechaBetween(fechaInicio, fechaFin, pageable);
     }
 
-    public JasperPrint generarReporteVenta() throws Exception {
-        return reporteService.generarReporteVentas();
+    public byte[] generarReporteVentaPDF() throws Exception {
+        return reporteService.generarReporteVentasPDF();
     }
 }
