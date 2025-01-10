@@ -25,10 +25,13 @@
             <input type="text" name="dni" class="form-control" placeholder="Buscar por dni">
           </div>
           <div class="col-md-2">
-            <button type="submit" class="btn btn-primary w-100">Buscar</button>
+            <button type="submit" class="btn btn-primary w-100">
+              <i class="fas fa-search"></i> Buscar
+            </button>
           </div>
         </div>
       </form>
+
 
 
       <!-- Mensajes de éxito o error -->
@@ -61,12 +64,15 @@
           <td th:text="${cliente.dni}"></td>
           <td th:text="${cliente.direccion}"></td>
           <td>
-            <a th:href="@{/clientes/editarCliente/{id}(id=${cliente.id})}" class="btn btn-warning btn-sm">Editar</a>
+            <a th:href="@{/clientes/editarCliente/{id}(id=${cliente.id})}" class="btn btn-warning btn-sm">
+              <i class="fas fa-edit"></i> Editar
+            </a>
             <a th:if="${usuario.rol.nombre == 'ADMIN'}"
                th:href="@{/clientes/eliminar/{id}(id=${cliente.id})}"
-               class="btn btn-danger btn-sm delete-btn">Eliminar</a>
+               class="btn btn-danger btn-sm delete-btn">
+              <i class="fas fa-trash-alt"></i> Eliminar
+            </a>
           </td>
-
         </tr>
         </tbody>
       </table>
@@ -92,7 +98,8 @@
         </ul>
       </nav>
 
-      <a th:href="@{/clientes/agregarCliente}" class="btn btn-primary">Añadir Cliente</a>
+      <a th:href="@{/clientes/agregarCliente}" class="btn btn-primary">
+        <i class="fas fa-plus-circle"></i> Añadir Cliente</a>
 
     </div>
   </div>

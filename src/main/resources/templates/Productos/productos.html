@@ -23,7 +23,8 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
       <!-- Botón de Productos con Bajo Stock -->
-      <a href="/productos/bajoStock?stockMinimo=10" class="btn btn-warning">Productos con bajo stock</a>
+      <a href="/productos/bajoStock?stockMinimo=10" class="btn btn-warning">
+        <i class="fas fa-filter"></i> Productos con bajo stock</a>
     </div>
 
     <!-- Formulario de Búsqueda -->
@@ -33,7 +34,8 @@
           <input type="text" name="nombre" class="form-control" placeholder="Buscar por nombre de producto">
         </div>
         <div class="col-md-2">
-          <button type="submit" class="btn btn-primary w-100">Buscar</button>
+          <button type="submit" class="btn btn-primary w-100">
+            <i class="fas fa-search"></i> Buscar</button>
         </div>
       </div>
     </form>
@@ -61,10 +63,12 @@
         <td th:text="${producto.stock}"></td>
         <td th:text="${producto.categoria.nombre}"></td>
         <td>
-          <a th:href="@{/productos/editarProducto/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">Editar</a>
+          <a th:href="@{/productos/editarProducto/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">
+            <i class="fas fa-edit"></i>Editar</a>
           <a th:if="${usuario.rol.nombre == 'ADMIN'}"
              th:href="@{/productos/eliminar/{id}(id=${producto.id})}"
-             class="btn btn-danger btn-sm delete-btn">Eliminar</a>
+             class="btn btn-danger btn-sm delete-btn">
+            <i class="fas fa-trash-alt"></i>Eliminar</a>
         </td>
 
       </tr>
@@ -93,7 +97,8 @@
     </nav>
 
     <!-- Botones adicionales -->
-    <a href="/productos/agregarProducto" class="btn btn-primary">Añadir Producto</a>
+    <a href="/productos/agregarProducto" class="btn btn-primary">
+      <i class="fas fa-plus-circle"></i> Añadir Producto</a>
   </div>
 </div>
 </body>

@@ -50,6 +50,18 @@ body.night-mode input.form-control::placeholder {
     color: #aaaaaa;
 }
 
+body.night-mode select.form-select {
+    background-color: #333333;
+    color: #ffffff;
+    border: 1px solid #555555;
+}
+
+body.night-mode select.form-select option {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+
 body.night-mode table.table {
     background-color: #1e1e1e;
     color: #ffffff;
@@ -67,3 +79,5 @@ body.night-mode table.table-striped tbody tr:nth-of-type(odd) {
 body.night-mode table.table-striped tbody tr:nth-of-type(even) {
     background-color: #1e1e1e;
 }
+
+

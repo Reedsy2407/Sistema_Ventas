@@ -7,8 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (nightModeEnabled) {
         enableNightMode();
+        toggleIcon.src = '/images/sun-icon.png'; // Icono para cambiar al modo día
     } else {
         disableNightMode();
+        toggleIcon.src = '/images/moon-icon.png'; // Icono para cambiar al modo noche
     }
 
     toggleButton.addEventListener('click', () => {
@@ -32,19 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => toggleIcon.classList.remove('icon-transition'), 300);
     });
 
-    function enableNightMode() {
-        document.body.classList.add('night-mode');
-        document.querySelector('.sidebar').classList.add('night-mode');
-        document.querySelector('.content').classList.add('night-mode');
+function enableNightMode() {
+    document.body.classList.add('night-mode');
+    document.querySelector('.sidebar').classList.add('night-mode');
+    document.querySelector('.content').classList.add('night-mode');
 
-        // Cambiar estilos de tablas y inputs en modo oscuro
-        document.querySelectorAll('input.form-control').forEach(input => {
-            input.classList.add('night-mode');
-        });
-        document.querySelectorAll('table.table').forEach(table => {
-            table.classList.add('night-mode');
-        });
-    }
+    // Cambiar estilos de inputs, selects y tablas en modo oscuro
+    document.querySelectorAll('input.form-control').forEach(input => {
+        input.classList.add('night-mode');
+    });
+    document.querySelectorAll('select.form-select').forEach(select => {
+        select.classList.add('night-mode');
+    });
+    document.querySelectorAll('table.table').forEach(table => {
+        table.classList.add('night-mode');
+    });
+}
 
     function disableNightMode() {
         document.body.classList.remove('night-mode');
@@ -55,6 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('input.form-control').forEach(input => {
             input.classList.remove('night-mode');
         });
+            document.querySelectorAll('select.form-select').forEach(select => {
+                select.classList.remove('night-mode');
+            });
         document.querySelectorAll('table.table').forEach(table => {
             table.classList.remove('night-mode');
         });

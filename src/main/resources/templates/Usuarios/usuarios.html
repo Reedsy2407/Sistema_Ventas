@@ -40,17 +40,20 @@
       <td th:text="${usuario.password}"></td>
       <td th:text="${usuario.rol.nombre}"></td>
       <td>
-        <a th:href="@{/usuarios/editarUsuario/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
+        <a th:href="@{/usuarios/editarUsuario/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">
+          <i class="fas fa-edit"></i>Editar</a>
         <a th:href="@{/usuarios/eliminar/{id}(id=${usuario.id})}"
            th:attr="data-usuario-id=${usuario.id}"
-           class="btn btn-danger btn-sm delete-btn">Eliminar</a>
+           class="btn btn-danger btn-sm delete-btn">
+          <i class="fas fa-trash-alt"></i>Eliminar</a>
       </td>
     </tr>
     </tbody>
   </table>
 
   <!-- Botón para añadir usuario -->
-  <a href="/usuarios/agregarUsuario" class="btn btn-primary">Añadir Usuario</a>
+  <a href="/usuarios/agregarUsuario" class="btn btn-primary">
+    <i class="fas fa-plus-circle"></i> Añadir Usuario</a>
 </div>
 </div>
 </body>

@@ -21,7 +21,13 @@
 <div class="sidebar d-flex flex-column justify-content-between" style="height: 100vh; position: fixed;">
   <!-- Enlace principales -->
   <div>
-    <h4 class="text-center py-3">Sistema de Ventas</h4>
+    <!-- Reemplazar el título con el logo más grande -->
+    <div class="text-center" style="padding: 10px;">
+      <img src="/images/rocketCompanySinfondo.png"
+           alt="Logo de Rocket Company"
+           style="width: 100%; max-width: 200px; height: auto; max-height: 200px;">
+    </div>
+
     <a th:href="@{/}" th:classappend="${currentPage == 'index' ? 'active' : ''}">
       <i class="fas fa-home me-2"></i> Inicio
     </a>
